@@ -100,6 +100,7 @@ service-worker: true
 friends: [
     {
         title: "知乎主页",
-        href: "https://www.zhihu.com/people/ku-bi-fen-dou-de-di-ceng-xie-shou"
+        href: "https://www.zhihu.com/people/ku-bi-fen-dou-de-di-ceng-xie-shou",
+        target: "_blank"
     }
 ]
