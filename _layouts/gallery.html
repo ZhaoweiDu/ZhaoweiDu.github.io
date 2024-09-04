@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
+    <!-- 引入主要的 CSS 样式文件 -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/pubu.css">
     <style>
+        /* Gallery 的 CSS 样式 */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -42,6 +45,7 @@
         {% include footer.html %}
     </footer>
 
+    <!-- 引入 Masonry.js 用于瀑布流布局 -->
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
