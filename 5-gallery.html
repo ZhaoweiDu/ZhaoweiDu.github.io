@@ -32,8 +32,10 @@ permalink: /galleryimg/
     <!-- 引入其他样式 -->
     <style>
         .gallery-container {
-            width: 100%; /* 调整画廊宽度以适应页面 */
-            margin: 25 auto;
+            width: 80%; /* 调整画廊宽度以适应页面 */
+            margin: 20px auto; /* 为画廊容器增加外边距 */
+            padding: 0; /* 确保内部没有额外的内边距 */
+            box-sizing: border-box; /* 确保padding不会影响容器的宽度 */
         }
         .gallery-item img {
             width: 100%; /* 缩略图占满父容器 */
