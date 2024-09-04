@@ -35,21 +35,26 @@ permalink: /galleryimg/
                             }
 
         .gallery img {
-                max-width: 100%;      /* 确保图片不会超过容器宽度 */
-                height: auto;         /* 保持图片纵横比 */
-                display: block;       /* 消除图片下方的空隙 */
+                width: 100%;      /* 让图片宽度自动调整以适应容器 */
+                height: auto;     /* 让高度自动调整以保持图片的比例 */
+                max-width: 100%;  /* 限制图片最大宽度 */
+                margin: 0 auto;   /* 图片居中显示 */
                     }
     </style>
 </head>
 <body>
     <!-- 你的画廊 HTML -->
-    <div class="gallery-container">
-        <div id="gallery" class="gallery">
+    <div id="gallery">
+        <div class="gallery-item">
             <img src="image1.jpg" alt="Image 1">
-            <img src="test2.jpg" alt="Image 2">
-            <img src="test3.jpg" alt="Image 3">
-            <!-- 更多图片 -->
         </div>
+        <div class="gallery-item">
+            <img src="test2.jpg" alt="Image 2">
+        </div>
+        <div class="gallery-item">
+            <img src="test3.jpg" alt="Image 3">
+        </div>
+    <!-- 添加更多的图片项 -->
     </div>
 
     <!-- 引入 jQuery -->
@@ -60,11 +65,12 @@ permalink: /galleryimg/
     <script>
        $(document).ready(function() {
             $('#gallery').justifiedGallery({
-                        rowHeight: 150,          // 调整行高
-                        maxRowHeight: 200,       // 设置最大行高
-                        margins: 5,               // 设置图片间距
-                        lastRow: 'justify',      // 对齐最后一行
-                    captions: false          // 是否显示标题
+                        rowHeight: 200,        // 设置每行的基础高度
+                        maxRowHeight: 250,     // 限制每行的最大高度
+                        margins: 5,            // 设置图片之间的间距
+                        lastRow: 'nojustify',  // 控制最后一行不拉伸填充
+                        captions: false,       // 不显示标题
+                        rel: 'gallery1'        // 设置图片组名（用于灯箱功能）
                                             });
                                     });
     </script>
