@@ -1,10 +1,50 @@
 ---
-layout: gallery
+layout: default
 title: Gallery
-description: "天生我才必有用，千金散尽还复来"
+description: "白驹过隙"
 header-img: "img/post-bg-about.jpg"
 permalink: /galleryimg/
 ---
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <!-- 引入主要的 CSS 样式文件 -->
+    <!--<link rel="stylesheet" href="{{ site.baseurl }}/css/pubu.css">-->
+    <style>
+        /* Gallery 的 CSS 样式 */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 10px;
+        }
+
+        .gallery-item {
+            background: #f5f5f5;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<!-- 引入 Masonry.js 用于瀑布流布局 -->
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elem = document.querySelector('.gallery');
+            var msnry = new Masonry(elem, {
+                itemSelector: '.gallery-item',
+                columnWidth: '.gallery-item',
+                percentPosition: true
+            });
+        });
+    </script>
+
 
 <!-- Page Header -->
 <header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
@@ -19,8 +59,9 @@ permalink: /galleryimg/
         </div>
     </div>
 </header>
-
-<div class="gallery-item">
-    <img src="galleryimg/image1.jpg" alt="Image 1">
-</div>
+<div class="container">
+    <div class="gallery-item">
+        <img src="galleryimg/image1.jpg" alt="Image 1">
+    </div>
+</div>   
 <!-- 添加更多图片项 -->
