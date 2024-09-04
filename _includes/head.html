@@ -54,4 +54,27 @@
     <!--<script></script>-->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- 引入 jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- 引入 Justified-Gallery JS -->
+    <script src="js/jquery.justifiedGallery.min.js"></script>
+    <!-- 引入 Lightbox JS -->
+    <script src="js/lightbox.min.js"></script>
+    <!-- 初始化 Justified-Gallery -->
+    <script>
+        $(document).ready(function() {
+            $('.gallery-container').justifiedGallery({
+                rowHeight: 150,
+                maxRowHeight: 200,
+                margins: 5,
+                lastRow: 'nojustify',
+                captions: false
+            });
+
+            // 添加关闭事件，确保点击图片时关闭 Lightbox
+            $(document).on('click', '.lb-image', function() {
+                lightbox.end();
+            });
+        });
+    </script>
 </head>
