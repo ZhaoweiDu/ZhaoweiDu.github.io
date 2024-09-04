@@ -27,53 +27,52 @@ permalink: /galleryimg/
     <title>My Gallery</title>
     <!-- 引入 Justified-Gallery CSS -->
     <link rel="stylesheet" href="css/justifiedGallery.min.css">
+    <!-- 引入 Lightbox CSS -->
+    <link rel="stylesheet" href="css/lightbox.min.css">
     <!-- 引入其他样式 -->
     <style>
         .gallery-container {
-                        width: 100%;
-                        margin: 0 auto;
-                            }
+            width: 80%; /* 调整画廊宽度以适应页面 */
+            margin: 0 auto;
+        }
+        .gallery-item img {
+            width: 100%; /* 缩略图占满父容器 */
+            height: auto;
+        }
     </style>
 </head>
 <body>
     <!-- 你的画廊 HTML -->
-    <div class="gallery-container" id="gallery">
-            <img src="test1.jpg" alt="Image 1">
-            <img src="test2.jpg" alt="Image 2">
-            <img src="test3.jpg" alt="Image 3">
-    <!-- 添加更多的图片项 -->
+    <div class="gallery-container">
+        <a href="test1.jpg" data-lightbox="gallery" data-title="Image 1">
+            <img src="test1-thumb.jpg" alt="Image 1">
+        </a>
+        <a href="test2.jpg" data-lightbox="gallery" data-title="Image 2">
+            <img src="test2-thumb.jpg" alt="Image 2">
+        </a>
+        <a href="test3.jpg" data-lightbox="gallery" data-title="Image 3">
+            <img src="test3-thumb.jpg" alt="Image 3">
+        </a>
+        <!-- 添加更多的图片项 -->
     </div>
 
     <!-- 引入 jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- 引入 Justified-Gallery JS -->
     <script src="js/jquery.justifiedGallery.min.js"></script>
+    <!-- 引入 Lightbox JS -->
+    <script src="js/lightbox.min.js"></script>
     <!-- 初始化 Justified-Gallery -->
     <script>
-       $(document).ready(function() {
-            $('#gallery').justifiedGallery({
-                        rowHeight: 200,        // 设置每行的基础高度
-                        margins: 5,            // 设置图片之间的间距
-                        lastRow: 'nojustify',  // 控制最后一行不拉伸填充
-                        captions: false,       // 不显示标题
-                        rel: 'gallery1'        // 设置图片组名（用于灯箱功能）
-                                            });
-                                    });
+        $(document).ready(function() {
+            $('.gallery-container').justifiedGallery({
+                rowHeight: 150,       // 缩略图每行的高度
+                maxRowHeight: 200,    // 限制每行的最大高度
+                margins: 5,           // 设置图片之间的间距
+                lastRow: 'nojustify', // 控制最后一行不拉伸填充
+                captions: false       // 不显示标题
+            });
+        });
     </script>
 </body>
 </html>
-
-
-
-<!--<div class="container">
-    <div class="gallery-item">
-        <img src="image1.jpg" alt="Image 1">
-    </div>
-    <div class="gallery-item">
-        <img src="image1.jpg" alt="Image 2">
-    </div>
-    <div class="gallery-item">
-        <img src="image1.jpg" alt="Image 3">
-    </div>
-</div>-->
-<!-- 添加更多图片项 -->
