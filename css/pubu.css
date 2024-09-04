@@ -1,0 +1,55 @@
+/* Basic reset for consistent styling across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Gallery container styling */
+.gallery {
+    column-count: 3;
+    column-gap: 15px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.gallery-item {
+    background: #fff;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Hover effect for gallery items */
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .gallery {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 800px) {
+    .gallery {
+        column-count: 1;
+    }
+}
