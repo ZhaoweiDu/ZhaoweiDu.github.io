@@ -73,6 +73,9 @@ permalink: /galleryimg/
                 lastRow: 'nojustify', // 控制最后一行不拉伸填充
                 captions: false       // 不显示标题
             });
+            $(document).on('click', '.lb-image', function() {
+                lightbox.end(); // 关闭 Lightbox
+            });
         });
     </script>
 </body>
