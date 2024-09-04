@@ -30,9 +30,15 @@ permalink: /galleryimg/
     <!-- 引入其他样式 -->
     <style>
         .gallery-container {
-            width: 100%;
-            margin: 0 auto;
-        }
+                        width: 100%;
+                        margin: 0 auto;
+                            }
+
+        .gallery img {
+                max-width: 100%;      /* 确保图片不会超过容器宽度 */
+                height: auto;         /* 保持图片纵横比 */
+                display: block;       /* 消除图片下方的空隙 */
+                    }
     </style>
 </head>
 <body>
@@ -52,12 +58,15 @@ permalink: /galleryimg/
     <script src="js/jquery.justifiedGallery.min.js"></script>
     <!-- 初始化 Justified-Gallery -->
     <script>
-        $(document).ready(function() {
+       $(document).ready(function() {
             $('#gallery').justifiedGallery({
-                rowHeight: 150,
-                margins: 5
-            });
-        });
+                        rowHeight: 150,          // 调整行高
+                        maxRowHeight: 200,       // 设置最大行高
+                        margins: 5,               // 设置图片间距
+                        lastRow: 'justify',      // 对齐最后一行
+                    captions: false          // 是否显示标题
+                                            });
+                                    });
     </script>
 </body>
 </html>
