@@ -67,22 +67,16 @@ permalink: /galleryimg/
     <script>
         $(document).ready(function() {
             $('.gallery-container').justifiedGallery({
-                rowHeight: 150,       // 缩略图每行的高度
-                maxRowHeight: 200,    // 限制每行的最大高度
-                margins: 5,           // 设置图片之间的间距
-                lastRow: 'nojustify', // 控制最后一行不拉伸填充
-                captions: false       // 不显示标题
+                rowHeight: 150,
+                maxRowHeight: 200,
+                margins: 5,
+                lastRow: 'nojustify',
+                captions: false
             });
-            lightbox.option({
-                'wrapAround': true,  // 开启图片循环显示
-                'alwaysShowNavOnTouchDevices': true, // 确保导航按钮在触摸设备上始终显示
-                'fadeDuration': 300, // 淡入淡出动画持续时间
-                'resizeDuration': 150, // 调整大小动画持续时间
-                'imageFadeDuration': 300, // 图片淡入淡出持续时间
-                'disableScrolling': true // 打开图片时禁用页面滚动
-            });
+
+            // 添加关闭事件，确保点击图片时关闭 Lightbox
             $(document).on('click', '.lb-image', function() {
-                lightbox.end(); // 关闭 Lightbox
+                lightbox.end();
             });
         });
     </script>
