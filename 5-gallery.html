@@ -5,47 +5,6 @@ description: "白驹过隙"
 header-img: "img/post-bg-about.jpg"
 permalink: /galleryimg/
 ---
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <!-- 引入主要的 CSS 样式文件 -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/pubu.css">
-    <style>
-        /* Gallery 的 CSS 样式 */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            grid-gap: 10px;
-        }
-
-        .gallery-item {
-            background: #f5f5f5;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-    </style>
-</head>
-<!-- 引入 Masonry.js 用于瀑布流布局 -->
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var elem = document.querySelector('.gallery');
-            var msnry = new Masonry(elem, {
-                itemSelector: '.gallery-item',
-                columnWidth: '.gallery-item',
-                percentPosition: true
-            });
-        });
-    </script>
-
-
 <!-- Page Header -->
 <header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
     <div class="container">
@@ -59,7 +18,53 @@ permalink: /galleryimg/
         </div>
     </div>
 </header>
-<div class="container">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Gallery</title>
+    <!-- 引入 Justified-Gallery CSS -->
+    <link rel="stylesheet" href="css/justifiedGallery.min.css">
+    <!-- 引入其他样式 -->
+    <style>
+        .gallery-container {
+            width: 100%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 你的画廊 HTML -->
+    <div class="gallery-container">
+        <div id="gallery" class="gallery">
+            <img src="image1.jpg" alt="Image 1">
+            <img src="image1.jpg" alt="Image 2">
+            <img src="image1.jpg" alt="Image 3">
+            <!-- 更多图片 -->
+        </div>
+    </div>
+
+    <!-- 引入 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- 引入 Justified-Gallery JS -->
+    <script src="js/jquery.justifiedGallery.min.js"></script>
+    <!-- 初始化 Justified-Gallery -->
+    <script>
+        $(document).ready(function() {
+            $('#gallery').justifiedGallery({
+                rowHeight: 150,
+                margins: 5
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+<!--<div class="container">
     <div class="gallery-item">
         <img src="image1.jpg" alt="Image 1">
     </div>
@@ -69,5 +74,5 @@ permalink: /galleryimg/
     <div class="gallery-item">
         <img src="image1.jpg" alt="Image 3">
     </div>
-</div>   
+</div>-->
 <!-- 添加更多图片项 -->
