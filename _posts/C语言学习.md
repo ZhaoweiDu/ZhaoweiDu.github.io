@@ -1,0 +1,210 @@
+---
+layout:     post
+title:      C语言学习
+subtitle:   来自chatgpt
+date:       2024-10-4
+author:     Zhao-Wei Du
+catalog: false
+tags:
+    - C++
+---
+
+本文不会从基础知识开始讲起，更类似一种学习过程中的笔记，需要有一定基础再来看，至少要了解数据类型。
+
+# 从完整代码中学习程序
+
+```c++
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <sstream>
+#include <string>
+
+// 通用列提取函数
+std::vector<std::vector<double>> read_columns(const std::string& filename, const std::vector<int>& columns) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "无法打开文件!" << std::endl;
+        return {};
+    }
+
+    std::vector<std::vector<double>> extracted_columns(columns.size());
+    std::string line;
+
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string value;
+        std::vector<double> row_values;
+
+        // 读取每行的所有列
+        while (ss >> value) {
+            row_values.push_back(std::stod(value));
+        }
+
+        // 检查行中的列数是否足够
+        for (size_t i = 0; i < columns.size(); ++i) {
+            int col_index = columns[i] - 1;  // 列号从1开始，所以需要减1来获得正确索引
+            if (col_index < row_values.size()) {
+                extracted_columns[i].push_back(row_values[col_index]);
+            } else {
+                std::cerr << "行中的列数不足!" << std::endl;
+            }
+        }
+    }
+
+    file.close();
+    return extracted_columns;
+}
+
+int main() {
+    // 输入文件名和所需提取的列号
+    std::string filename = "data.txt";
+    std::vector<int> columns = {2, 4, 5};  // 提取第二、第三、第四列
+
+    // 调用函数获取指定列的数据
+    std::vector<std::vector<double>> result = read_columns(filename, columns);
+
+    // 输出结果
+    for (size_t i = 0; i < result.size(); ++i) {
+        std::cout << "第" << columns[i] << "列: ";
+        for (const auto& value : result[i]) {
+            std::cout << value << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    return 0;
+}
+
+```
+
+该程序旨在输入文件（文件结构为N列$\times$​N行）后，输出指定的列
+
+### 1、`std::` 前缀的含义
+
+`std::` 是指**标准命名空间**（`std` 是 "standard" 的缩写）。在 C++ 标准库中，几乎所有的类、函数、常量等都被定义在命名空间 `std` 中。这是为了避免与用户自定义的名称产生冲突。例如，`std::vector` 是 C++ 标准库提供的动态数组模板类，而不是你自己定义的 `vector`。
+
+如果不使用 `std::` 前缀，那么当你定义了一个与标准库同名的类型或函数时，可能会导致名字冲突。C++ 使用命名空间来避免这种冲突。C++ 标准库中的所有内容都放在 `std` 命名空间中，因此当你使用这些标准库的组件时，必须使用 `std::` 前缀。
+
+```c++
+struct vector { /* 自定义的 vector */ };
+
+// 现在你可能会遇到名字冲突：
+vector<int> myVector = {1, 2, 3}; // 你指的是标准库的 vector 还是自定义的？
+```
+
+**示例：**
+
+- `std::vector<double>`：这是标准库提供的动态数组（向量）类，用于存储 `double` 类型的数据。
+
+- `std::string`：这是标准库提供的字符串类，用于处理字符串。
+
+- `std::cout`：标准输出流，用于将数据输出到控制台。
+
+如果不想频繁使用`std::`格式，可以使用下述方式：
+
+```c++
+using std::vector;
+using std::string;
+vector<double> myVector = {1.0, 2.0, 3.0};
+string name = "ChatGPT";
+```
+
+### 2、vector
+
+C++ 中的 `vector` 是一种序列容器，它允许你在运行时动态地插入和删除元素。
+
+vector 是基于数组的数据结构，但它可以自动管理内存，这意味着你不需要手动分配和释放内存。
+
+与 C++ 数组相比，`vector` 具有更多的灵活性和功能，使其成为 C++ 中常用的数据结构之一。
+
+`vector` 是 C++ 标准模板库（STL）的一部分，提供了灵活的接口和高效的操作。
+
+**基本特性:**
+
+- **动态大小**：`vector` 的大小可以根据需要自动增长和缩小。
+- **连续存储**：`vector` 中的元素在内存中是连续存储的，这使得访问元素非常快速。
+- **可迭代**：`vector` 可以被迭代，你可以使用循环（如 `for` 循环）来访问它的元素。
+- **元素类型**：`vector` 可以存储任何类型的元素，包括内置类型、对象、指针等。
+
+**使用场景：**
+
+- 当你需要一个可以动态增长和缩小的数组时。
+- 当你需要频繁地在序列的末尾添加或移除元素时。
+- 当你需要一个可以高效随机访问元素的容器时。
+
+```c++
+std::vector<int> myvector; //创建一个空的vector，其中的数据类型为int
+std::vector<std::vector<double>> myvector2; //创建一个名为myvector2的空的vector，其中的数据类型也为vector，这个vector中的数据类型为double
+//类似于Python中的[[1.0],[2.0],[3.0]]的结构
+```
+
+`vector`的一些用法：
+
+```c++
+std::vector<int> myVector(5); // 创建一个包含 5 个整数的 vector，每个值都为默认值（0）
+std::vector<int> myVector(5, 10); // 创建一个包含 5 个整数的 vector，每个值都为 10
+
+myVector.push_back(7);//在myvector的尾部增加一个数据类型为int的数据，其大小为7
+
+//注意，向vector存入新的数据会自动重整为定义vector时的数据类型，比如向std::vector<int>存入数据7.1会被自动重整为7
+
+myVector.size(); // 获取 vector 中的元素数量
+myVector.at(1); // 获取第二个元素
+myVector.erase(myvector.begin() + 2); // 删除第二个元素
+myVector.clear(); // 清空 vector
+```
+
+可以参考[菜鸟教程C++vector](https://www.runoob.com/cplusplus/cpp-vector.html#:~:text=std::vecto)，[C++ STL标准库：std::vector 使用详解](https://blog.csdn.net/u014779536/article/details/111239643)
+
+### 3、拷贝与引用
+
+在给出的程序中定义的函数里面有`std::string& filename`的字样，其中`std::string`是在声明代入函数的数据类型，`filename`是变量名，而`&`是在直接对代入得变量进行操作，如果函数中对`filename`进行了更改，那么调用完毕函数后`filename`就会被更改，如果不加`&`而是使用`std::string filename`的形式，则是会在函数运行的过程中创建一个`filename`的拷贝，这样会增加计算成本和计算事件，在大型计算中要注意。
+
+### 4、常量const
+
+`const`是constant的简写，用来定义常量，它限定一个变量不允许被改变，产生静态作用。如果尝试修改一个常量，那么程序会报错。
+
+**const的优点：**
+
+1. 预编译指令只是对值进行简单的替换，不能进行类型检查
+
+2. 可以保护被修饰的东西，防止意外修改，增强程序的健壮性
+
+3. 编译器通常不为普通`const`常量分配存储空间，而是将它们保存在符号表中，这使得它成为一个编译期间的常量，<u>没有了存储与读内存的操作，使得它的效率也很高</u>。
+
+可以参考[C语言中const关键字的用法](https://blog.csdn.net/xingjiarong/article/details/47282255)，[C++ const 关键字小结](https://www.runoob.com/w3cnote/cpp-const-keyword.html)
+
+### std::cerr << "无法打开文件!" << std::endl
+
+`std::endl` 输出一个换行符，并立即刷新缓冲区。
+
+`std::cerr` 向终端输出报错信息。
+
+### 循环语句
+
+```c++
+while (True/False){
+		code
+}
+```
+
+当括号内为真时执行大括号中的内容，直到括号内为假，则直接结束循环
+
+```c++
+for (表达式1; 表达式2; 表达式3) 
+{
+	code
+}
+
+```
+
+在for循环语句中，当进入循环后for循环只被执行一次，然后在每一次的循环中，依次执行表达式2，code，表达式3，直到表达式2为假。
+
+```c++
+do {
+    code
+} while (True/False);
+```
+
+该循环会至少循环一次，然后进入判断真假的部分。
