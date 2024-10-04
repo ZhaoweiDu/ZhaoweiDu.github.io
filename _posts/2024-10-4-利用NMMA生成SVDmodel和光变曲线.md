@@ -9,6 +9,7 @@ tags:
     - Python
 ---
 NMMA（The Nuclear Multimessenger Astronomy Framework）是一个集成了引力波、千新星、GRB余辉和超新星的`Python`模型，目前本人只理解了部分功能，特做此笔记以方便后人借鉴。
+
 [NMMA官方文档](https://nuclear-multimessenger-astronomy.github.io/nmma/#)
 
 [NMMAgithub页面](https://github.com/nuclear-multimessenger-astronomy/nmma)
