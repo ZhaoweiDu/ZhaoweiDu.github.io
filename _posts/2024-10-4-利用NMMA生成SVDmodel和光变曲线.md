@@ -50,6 +50,8 @@ $$
 
 ### 在NMMA中利用SVDmodel生成千新星的光变曲线
 
+[NMMA官方提供的SVDmodel](https://gitlab.com/Theodlz/nmma-models)
+
 ```python
 import numpy as np
 import nmma.em.io as io
