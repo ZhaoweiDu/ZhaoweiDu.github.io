@@ -14,7 +14,7 @@ NMMA（The Nuclear Multimessenger Astronomy Framework）是一个集成了引力
 
 [NMMAgithub页面](https://github.com/nuclear-multimessenger-astronomy/nmma)
 
-### SVD
+### 1、SVD
 
 SVD是Singular Value Decomposition的简写，是一种线性代数工具，广泛用于矩阵分解、降维、数据压缩和特征提取等领域。SVD的基本思想是将一个矩阵分解为三个矩阵的乘积，使得矩阵的结构能够被很好地表达。
 
@@ -48,7 +48,7 @@ $$
 2. **低秩近似**：通过丢弃小奇异值，SVD可以用于构建矩阵的低秩近似，从而减少计算负担。
 3. **数据分析**：在推荐系统、主题建模等问题中，SVD可以用于提取重要的潜在结构。
 
-### 在NMMA中利用SVDmodel生成千新星的光变曲线
+### 2、在NMMA中利用SVDmodel生成千新星的光变曲线
 
 [NMMA官方提供的SVDmodel](https://gitlab.com/Theodlz/nmma-models)
 
@@ -90,7 +90,7 @@ lbol, mag = light_curve_model.generate_lightcurve(sample_times, data)
 #此时的mag是一个dictionary格式的数据，通过调用filts的keywords可以输入具体的对应时间的绝对星等
 ```
 
-### 在NMMA中生成自己的SVDmodel
+### 3、在NMMA中生成自己的SVDmodel
 
 首先，生成专属于自己的SVDmodel需要一系列特殊命名的数据，如果自己没有能力生成数，可以从公开的数据集中选取，[一些使用POSSIS算法生成的数据](https://drive.google.com/drive/folders/1QCajfQtxOc74NgFWkZTqG_dD1hGdLogB?usp=drive_link)。
 
